@@ -9,6 +9,19 @@ class QuizQuestionCreate(BaseModel):
     option_d: str
     correct_option: str
 
+# ADD THIS NEW SCHEMA - For API responses
+class QuizQuestionResponse(BaseModel):
+    id: int
+    question: str
+    option_a: str
+    option_b: str
+    option_c: str
+    option_d: str
+    # Note: We don't include correct_option in response for security
+    
+    class Config:
+        from_attributes = True
+
 class QuizQuestionsCreate(BaseModel):
     questions: List[QuizQuestionCreate]
 
@@ -17,5 +30,5 @@ class QuizAnswer(BaseModel):
     selected_option: str
 
 class QuizSubmission(BaseModel):
-    answers: list[QuizAnswer]
-
+    answers: List[QuizAnswer]
+    
